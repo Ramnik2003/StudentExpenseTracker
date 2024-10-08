@@ -1,16 +1,16 @@
 package model;
 
 public class ElementExpense {
-    private int expense;
+    private double expense;
     private String category;
     private String date;
 
     //EFFECTS: constructs a new element expense with a date and a category.
-    public ElementExpense(int expense, String category, String date) {
+    public ElementExpense(double expense, String category, String date) {
         //stub
     }
 
-    public int getExpense() {
+    public double getExpense() {
         return 0;
     }
     public String getDate() {
