@@ -7,32 +7,21 @@ public class ElementExpense {
 
     //EFFECTS: constructs a new element expense with a date and a category.
     public ElementExpense(double expense, String category, String date) {
-        //stub
+        this.expense=expense;
+        this.category=category;
+        this.date=date;
     }
 
     public double getExpense() {
-        return 0;
+        return expense;
     }
     public String getDate() {
-        return null;
+        return date;
     }
 
     public String getCategory() {
         return category;
     }
-
-    // public void setExpense() {
-    //     this.expense=expense;
-    // }
-   
-
-    // public void setCategory() {
-    //     //stub
-    // }
-
-    // public void setDate() {
-    //     //stub
-    // }
 
 
 }
