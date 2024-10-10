@@ -1,22 +1,25 @@
 package model;
 
+import java.time.LocalDate;
+
 public class ElementExpense {
     private double expense;
     private String category;
-    private String date;
+    //private String date;
+    private LocalDate date;
 
     //EFFECTS: constructs a new element expense with a date and a category.
-    public ElementExpense(double expense, String category, String date) {
+    public ElementExpense(double expense, String category, LocalDate date) {
         this.expense=expense;
         this.category=category;
-        this.date=date;
+        this.date = date;
     }
 
     public double getExpense() {
         return expense;
     }
-    public String getDate() {
-        return date;
+    public LocalDate getDate() {
+        return this.date;
     }
 
     public String getCategory() {
