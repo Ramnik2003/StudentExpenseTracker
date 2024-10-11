@@ -1,3 +1,6 @@
+//I used StackOverflow to learn more about the usage of .filter() method and LocalDate class
+// .filter() usage reference: https://stackoverflow.com/questions/71888924/how-to-filter-element-from-a-list-using-java-8-streams
+// LocalDate usage reference: https://docs.oracle.com/javase/8/docs/api/?java/time/LocalDate.html 
 package model;
 
 import java.time.LocalDate;
