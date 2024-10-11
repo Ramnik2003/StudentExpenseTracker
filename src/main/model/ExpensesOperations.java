@@ -1,55 +1,90 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 
 public class ExpensesOperations {
-    private ElementExpense dataExpense;
-    private List<ElementExpense> expenses;
+    private List<ElementExpense> expensesList;
+    
 
     //EFFECTS: constructs ExpenseOperations class that returns values
     // from the List<ElementExpense> after performing various operations 
     public ExpensesOperations() {
-        //stub
+        this.expensesList=new ArrayList<>();
+
     }
 
     public List<ElementExpense> getExpensesList() {
-        return null;
+        return expensesList;
     }
 
 
     //MODIFIES: this
     //EFFECTS: adds the element to the dataExpense list
     public void addExpense(ElementExpense expense) {
-        //stub
+        expensesList.add(expense);
     }
 
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses after adding all the expenses on a particular date
     public double totalDaily(LocalDate date) {
-        return 0;
+        List<ElementExpense> filteredExpenses = expensesList.stream()
+        .filter(e -> e.getDate().equals(date))
+        .collect(Collectors.toList());
+        
+        return additionFilteredElements(filteredExpenses);
+
     } 
 
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses in a category after adding the expenses 
     public double totalDailyPerCategory(LocalDate date, String category) {
-        return 0;
+        List<ElementExpense> filteredExpenses = expensesList.stream()
+        .filter(e -> e.getDate().equals(date) && e.getCategory().equals(category) )
+        .collect(Collectors.toList());
+       
+        return additionFilteredElements(filteredExpenses);
+
     }
 
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses after adding all the expenses in that month
     public double totalMonthly(int year, int month) {
-        return 0;
+        List<ElementExpense> filteredExpenses = expensesList.stream()
+        .filter(e -> e.getDate().getYear() == year && e.getDate().getMonthValue() == month)
+        .collect(Collectors.toList());
+    
+        return additionFilteredElements(filteredExpenses);
+
     }
 
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses in a category after adding the expenses in that month
     public double totalMonthlyPerCategory(int year, int month, String category) {
-        return 0;
+        List<ElementExpense> filteredExpenses = expensesList.stream()
+        .filter(e -> e.getDate().getYear() == year && e.getDate().getMonthValue() == month && e.getCategory() == category)
+        .collect(Collectors.toList());
+        return additionFilteredElements(filteredExpenses);
+        
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds all the filtered elements
+    public double additionFilteredElements(List<ElementExpense> filteredExpenses){
+        double total = 0;
+        for (int i = 0; i < filteredExpenses.size(); i++) {
+            total += filteredExpenses.get(i).getExpense();
+        }
+        return total;
+
+    }
+
+    
 }
