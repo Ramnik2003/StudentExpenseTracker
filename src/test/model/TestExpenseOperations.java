@@ -130,8 +130,8 @@ public class TestExpenseOperations {
         expenses.addExpense(expense2);
       
         List<ElementExpense> filteredDailyExpenses = expenses.getExpensesList().stream()
-            .filter(e -> e.getDate().equals(LocalDate.of(2024, 10, 10)))
-            .collect(Collectors.toList());
+                .filter(e -> e.getDate().equals(LocalDate.of(2024, 10, 10)))
+                .collect(Collectors.toList());
 
         assertEquals(10, filteredDailyExpenses.get(0).getExpense(),0.01);
 
@@ -143,8 +143,8 @@ public class TestExpenseOperations {
         expenses.addExpense(expense1);
       
         List<ElementExpense> filteredDailyExpenses = expenses.getExpensesList().stream()
-            .filter(e -> e.getDate().equals(LocalDate.of(2024, 10, 10)) && e.getCategory().equals("Coffee"))
-            .collect(Collectors.toList());
+                .filter(e -> e.getDate().equals(LocalDate.of(2024, 10, 10)) && e.getCategory().equals("Coffee"))
+                .collect(Collectors.toList());
 
         assertEquals(5, filteredDailyExpenses.get(0).getExpense(),0.01);
 
@@ -156,8 +156,8 @@ public class TestExpenseOperations {
         expenses.addExpense(expense3);
 
         List<ElementExpense> filteredExpenses = expenses.getExpensesList().stream()
-        .filter(e -> e.getDate().getYear() == 2024 && e.getDate().getMonthValue() == 9)
-        .collect(Collectors.toList());
+                .filter(e -> e.getDate().getYear() == 2024 && e.getDate().getMonthValue() == 9)
+                .collect(Collectors.toList());
 
         assertEquals(5, filteredExpenses.get(0).getExpense(),0.01);
 
@@ -171,8 +171,10 @@ public class TestExpenseOperations {
 
       
         List<ElementExpense> filteredMonthlyExpenses = expenses.getExpensesList().stream()
-            .filter(e -> e.getDate().getYear() == 2024 && e.getDate().getMonthValue()== 9 && e.getCategory().equals("Meal"))
-            .collect(Collectors.toList());
+                .filter(e -> e.getDate().getYear() == 2024 
+                            && e.getDate().getMonthValue() == 9 
+                            && e.getCategory().equals("Meal"))
+                .collect(Collectors.toList());
 
         assertEquals(15, filteredMonthlyExpenses.get(0).getExpense(),0.01);
 

@@ -1,4 +1,5 @@
 //I am refering to TellerApp and FlashCardReviewer lab.
+
 package ui;
 
 import java.util.*;
@@ -150,12 +151,13 @@ public class ExpenseTrackerApp {
         String category = input.nextLine();
     
         double total = expenses.totalMonthlyPerCategory(year, month, category);
-        System.out.println("Total monthly expenses for category '" + category + "' in " + year + "-" + month + ": " + total);
+        System.out.println("Total monthly expenses for category '" + category 
+                            + "' in " + year + "-" + month + ": " + total);
     }
 
     
         
-    }
+}
 
 
     

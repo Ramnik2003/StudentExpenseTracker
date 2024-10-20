@@ -10,14 +10,15 @@ public class ElementExpense {
 
     //EFFECTS: constructs a new element expense with a date and a category.
     public ElementExpense(double expense, String category, LocalDate date) {
-        this.expense=expense;
-        this.category=category;
+        this.expense = expense;
+        this.category = category;
         this.date = date;
     }
 
     public double getExpense() {
         return expense;
     }
+    
     public LocalDate getDate() {
         return this.date;
     }
