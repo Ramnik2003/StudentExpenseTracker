@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+// Represents an expense with a specific date and category
 public class ElementExpense {
     private double expense;
     private String category;
@@ -18,7 +19,7 @@ public class ElementExpense {
     public double getExpense() {
         return expense;
     }
-    
+
     public LocalDate getDate() {
         return this.date;
     }

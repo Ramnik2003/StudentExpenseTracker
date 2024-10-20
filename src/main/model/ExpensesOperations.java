@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-
+//Represents different methods that perform arithemetical operations on the inputed expenses from the user
 public class ExpensesOperations {
     private List<ElementExpense> expensesList;
     
