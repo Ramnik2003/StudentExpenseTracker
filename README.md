@@ -16,5 +16,7 @@ I am also a university student and that too a commuter, so sometimes I find myse
 - As a user, I want to able to view a list of my daily expenses.
 - As a user, I want to able to divide my daily expenses into differnet categories.
 - As a user, I want to able to see a combined list of the total daily and monthly expenses, divided into differnet categories.
+- As a user, I want to be able to save my expenses to file (if I so choose).
+- As a user, I want to be able to be able to load my expenses from file (if I so choose).
 
  
