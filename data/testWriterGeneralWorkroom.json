@@ -1,0 +1,12 @@
+{"expenses": [
+    {
+        "date": "2024-10-05",
+        "amount": 15,
+        "category": "meal"
+    },
+    {
+        "date": "2024-10-06",
+        "amount": 5,
+        "category": "coffee"
+    }
+]}
