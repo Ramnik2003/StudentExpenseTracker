@@ -64,7 +64,8 @@ public class ExpensesOperations implements Writable {
     //EFFECTS: returns total expenses after adding all the expenses in that month
     public double totalMonthly(LocalDate date) {
         List<ElementExpense> filteredExpenses = expensesList.stream()
-                .filter(e -> e.getDate().getYear() == date.getYear() && e.getDate().getMonthValue() == date.getMonthValue())
+                .filter(e -> e.getDate().getYear() == date.getYear() 
+                             && e.getDate().getMonthValue() == date.getMonthValue())
                 .collect(Collectors.toList());
      
         return additionFilteredElements(filteredExpenses);

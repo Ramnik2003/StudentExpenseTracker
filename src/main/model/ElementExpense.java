@@ -35,7 +35,7 @@ public class ElementExpense implements Writable  {
     @Override 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("expense", expense);
+        json.put("amount", expense);
         json.put("category", category);
         json.put("date", date);
         return json;
