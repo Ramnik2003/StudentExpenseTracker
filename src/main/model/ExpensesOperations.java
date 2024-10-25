@@ -4,13 +4,17 @@
 
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 //Represents different methods that perform arithemetical operations on the inputed expenses from the user
-public class ExpensesOperations {
+public class ExpensesOperations implements Writable {
     private List<ElementExpense> expensesList;
     
 
@@ -18,7 +22,6 @@ public class ExpensesOperations {
     // from the List<ElementExpense> after performing various operations 
     public ExpensesOperations() {
         this.expensesList = new ArrayList<>();
-
     }
 
     public List<ElementExpense> getExpensesList() {
@@ -90,6 +93,24 @@ public class ExpensesOperations {
         }
         return total;
 
+    }
+
+    @Override 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("expenses", expensesToJson());
+        return json;
+    }
+
+    //EFFECTS: return expenses in expensesList as a JSoN array
+    private JSONArray expensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (ElementExpense expense : expensesList) {
+            jsonArray.put(expense.toJson());
+        }
+
+        return jsonArray;
     }
 
     
