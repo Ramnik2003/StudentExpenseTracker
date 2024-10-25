@@ -5,17 +5,30 @@ package ui;
 import java.util.*;
 
 import model.ElementExpense;
-import model.ExpensesOperations; 
+import model.ExpensesOperations;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import java.time.LocalDate;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 //ExpenseTracker App that allows the user to add expenses and track them
 public class ExpenseTrackerApp {
+    private static final String JSON_STORE = "./data/expenses.json";
     private Scanner input;
     private ExpensesOperations expenses;
     //private boolean isProgramRunning;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: runs the application
-    public ExpenseTrackerApp() {
+    public ExpenseTrackerApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
         runTracker();
     }
 
@@ -55,6 +68,8 @@ public class ExpenseTrackerApp {
         System.out.println("\td -> View total daily expenses by category");
         System.out.println("\tc -> view total monthly expenses");
         System.out.println("\tm -> View total monthly expenses by category");
+        System.out.println("\ts -> save expenses to file");
+        System.out.println("\tl -> load expenses from file");
         System.out.println("\tq -> quit");
     }
 
@@ -77,6 +92,12 @@ public class ExpenseTrackerApp {
             case "m":
                 viewTotalMonthlyPerCategory();
                 break;
+            case "s":
+                saveExpensesOperations();
+                break;
+            case "l":
+                loadExpensesOperations();
+                break;
             default:
                 System.out.println("Selection not valid...");
                 break;
@@ -89,7 +110,7 @@ public class ExpenseTrackerApp {
     private void addNewExpense() {
         System.out.print("Please enter the expense amount: $");
         double amount = input.nextDouble();
-        input.nextLine(); // consume the newline
+        input.nextLine(); 
 
         System.out.print("Please enter the category: ");
         String category = input.nextLine();
@@ -114,20 +135,17 @@ public class ExpenseTrackerApp {
     //MODIFIES: this
     //EFFECTS: adds all the expenses in the selected month
     private void viewTotalMonthlyExpenses() {
-        System.out.print("Enter year (YYYY): ");
-        int year = input.nextInt();
+        System.out.print("Enter date (YYYY-MM-DD)(choose any day): ");
+        LocalDate date = LocalDate.parse(input.nextLine());
 
-        System.out.print("Enter month (MM): ");
-        int month = input.nextInt();
-
-        double total = expenses.totalMonthly(year, month);
-        System.out.println("Total expenses for " + month + "/" + year + ": $" + total);
+        double total = expenses.totalMonthly(date);
+        System.out.println("Total expenses for " + date.getMonthValue() + "/" + date.getYear() + ": $" + total);
     }
 
     //MODIFIES: this
     //EFFECTS: adds all the expenses of a particular category on a selected day
     public void viewTotalDailyPerCategory() {
-        System.out.println("Enter the date (yyyy-MM-dd): ");
+        System.out.println("Enter the date (yyyy-MM-dd)(choose any day): ");
         String dateInput = input.nextLine();
         LocalDate date = LocalDate.parse(dateInput);
     
@@ -141,22 +159,40 @@ public class ExpenseTrackerApp {
     //MODIFIES: this
     //EFFECTS: adds all the expenses of a particular category in the selected month
     public void viewTotalMonthlyPerCategory() {
-        System.out.println("Enter the year (yyyy): ");
-        int year = Integer.parseInt(input.nextLine());
-    
-        System.out.println("Enter the month (MM): ");
-        int month = Integer.parseInt(input.nextLine());
+        System.out.println("Enter the date (yyyy-MM-dd): ");
+        String dateInput = input.nextLine();
+        LocalDate date = LocalDate.parse(dateInput);
     
         System.out.println("Enter the category: ");
         String category = input.nextLine();
     
-        double total = expenses.totalMonthlyPerCategory(year, month, category);
+        double total = expenses.totalMonthlyPerCategory(date, category);
         System.out.println("Total monthly expenses for category '" + category 
-                            + "' in " + year + "-" + month + ": " + total);
+                            + "' in " + date.getYear() + "-" + date.getMonthValue() + ": " + total);
     }
 
-    
-        
+    // EFFECTS: saves the expensesOperations to file
+    private void saveExpensesOperations() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(expenses);
+            jsonWriter.close();
+            System.out.println("Saved " + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadExpensesOperations() {
+        try {
+            expenses = jsonReader.read();
+            System.out.println("Loaded expenses from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
 
 
