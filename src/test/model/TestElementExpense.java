@@ -23,5 +23,7 @@ public class TestElementExpense {
         assertEquals(LocalDate.of(2024,10,5), expense1.getDate());
     
     }
+
+    
 }
 

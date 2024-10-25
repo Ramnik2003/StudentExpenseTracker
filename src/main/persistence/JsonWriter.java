@@ -6,7 +6,7 @@ import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.IOException;
+
 import java.io.PrintWriter;
 
 import org.json.JSONArray;
@@ -33,7 +33,7 @@ public class JsonWriter {
     public void write(ExpensesOperations et) {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonExpenses = new JSONArray();
-        
+
         for (ElementExpense expense : et.getExpensesList()) {
             JSONObject jsonExpense = new JSONObject();
             jsonExpense.put("date", expense.getDate().toString());

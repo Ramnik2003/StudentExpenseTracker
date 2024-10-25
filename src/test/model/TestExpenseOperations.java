@@ -1,3 +1,6 @@
+//.filter() and Local Date testing referenced from StackOverflow:
+// https://stackoverflow.com/questions/69439833/how-to-filter-an-array-of-objects-by-month-and-year-java
+
 package model;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -89,7 +92,7 @@ public class TestExpenseOperations {
     void testTotalMonthlySingleDate() {
         expenses.addExpense(expense1);
         expenses.addExpense(expense2);
-        assertEquals(15, expenses.totalMonthly(2024, 10), 0.01);
+        assertEquals(15, expenses.totalMonthly(LocalDate.of(2024,10,1)), 0.01);
 
 
 
@@ -99,11 +102,11 @@ public class TestExpenseOperations {
     void testTotalMonthlyDifferentDate() {
         expenses.addExpense(expense1);
         expenses.addExpense(expense2);
-        assertEquals(15, expenses.totalMonthly(2024, 10), 0.01);
+        assertEquals(15, expenses.totalMonthly(LocalDate.of(2024, 10,1)), 0.01);
         expenses.addExpense(expense3);
         expenses.addExpense(expense4);
-        assertEquals(15, expenses.totalMonthly(2024, 10), 0.01);
-        assertEquals(20, expenses.totalMonthly(2024, 9), 0.01);
+        assertEquals(15, expenses.totalMonthly(LocalDate.of(2024, 10,1)), 0.01);
+        assertEquals(20, expenses.totalMonthly(LocalDate.of(2024, 9,1)), 0.01);
 
 
     }
@@ -112,15 +115,15 @@ public class TestExpenseOperations {
     void testTotalMonthlyPerCategory() {
         expenses.addExpense(expense1);
         expenses.addExpense(expense2);
-        assertEquals(5, expenses.totalMonthlyPerCategory(2024, 10,"Coffee"), 0.01);
-        assertEquals(10, expenses.totalMonthlyPerCategory(2024, 10, "Meal"), 0.01);
+        assertEquals(5, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 10,1),"Coffee"), 0.01);
+        assertEquals(10, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 10,1), "Meal"), 0.01);
 
         expenses.addExpense(expense3);
         expenses.addExpense(expense4);
-        assertEquals(5, expenses.totalMonthlyPerCategory(2024, 10,"Coffee"), 0.01);
-        assertEquals(15, expenses.totalMonthlyPerCategory(2024, 9, "Meal"), 0.01);
-        assertEquals(5, expenses.totalMonthlyPerCategory(2024, 9, "Coffee"), 0.01);
-        assertEquals(10, expenses.totalMonthlyPerCategory(2024, 10, "Meal"), 0.01);
+        assertEquals(5, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 10,1),"Coffee"), 0.01);
+        assertEquals(15, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 9,1), "Meal"), 0.01);
+        assertEquals(5, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 9,1), "Coffee"), 0.01);
+        assertEquals(10, expenses.totalMonthlyPerCategory(LocalDate.of(2024, 10,1), "Meal"), 0.01);
 
 
     }

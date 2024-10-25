@@ -73,6 +73,7 @@ public class ExpenseTrackerApp {
         System.out.println("\tq -> quit");
     }
 
+
     //MODIFIES: this
     //EFFECTS: processes user commands
     private void processCommand(String command) {
@@ -92,17 +93,28 @@ public class ExpenseTrackerApp {
             case "m":
                 viewTotalMonthlyPerCategory();
                 break;
+            default:
+                System.out.println("Selection not valid...");
+                break;
+
+        }
+        processCommandSaveAndLoad(command);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: processes user commands for save and load 
+    private void processCommandSaveAndLoad(String command) {
+        switch (command) {
             case "s":
                 saveExpensesOperations();
                 break;
             case "l":
                 loadExpensesOperations();
                 break;
-            default:
-                System.out.println("Selection not valid...");
-                break;
         }
     }
+
+
 
     //REQUIREES: expense amount>=0
     //MODIFIES: this

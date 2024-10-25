@@ -19,4 +19,23 @@ I am also a university student and that too a commuter, so sometimes I find myse
 - As a user, I want to be able to save my expenses to file (if I so choose).
 - As a user, I want to be able to be able to load my expenses from file (if I so choose).
 
+# References:
+- JsonSerialization Demo
+  https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
+
+- TellerApp 
+  https://github.students.cs.ubc.ca/CPSC210/TellerApp 
+
+- FlashCard Reviewer Lab
+  
+- .filter() method usage referenced from StackOverflow:
+    https://stackoverflow.com/questions/71888924/how-to-filter-element-from-a-list-using-java-8-streams
+- LocalDate class usage referenced from Oracle:
+     https://docs.oracle.com/javase/8/docs/api/?java/time/LocalDate.html
+- .filter() and Local Date testing referenced from StackOverflow:
+    https://stackoverflow.com/questions/69439833/how-to-filter-an-array-of-objects-by-month-and-year-java
+
+
+
+
  
