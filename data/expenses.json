@@ -1,1 +1,37 @@
-{"expenses": []}
+{"expenses": [
+    {
+        "date": "2024-10-05",
+        "amount": 12,
+        "category": "coffee"
+    },
+    {
+        "date": "2024-10-05",
+        "amount": 20,
+        "category": "meal"
+    },
+    {
+        "date": "2024-10-06",
+        "amount": 23,
+        "category": "fashion"
+    },
+    {
+        "date": "2024-11-11",
+        "amount": 25,
+        "category": "meal"
+    },
+    {
+        "date": "2024-07-11",
+        "amount": 200,
+        "category": "travel"
+    },
+    {
+        "date": "2024-09-10",
+        "amount": 4,
+        "category": "coffee"
+    },
+    {
+        "date": "2024-09-10",
+        "amount": 13,
+        "category": "meal"
+    }
+]}
