@@ -51,18 +51,18 @@ class JsonWriterTest extends JsonTest {
             expenses.addExpense(new ElementExpense(15, "meal",LocalDate.of(2024,10,5)));
             expenses.addExpense(new ElementExpense(5, "coffee",LocalDate.of(2024,10,6)));
             
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralExpensesOperations.json");
             writer.open();
             writer.write(expenses);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralExpensesOperations.json");
             expenses = reader.read();
             List<ElementExpense> expensesList = expenses.getExpensesList();
             assertEquals(2, expensesList.size()); 
             
-            checkExpense(15,"Food", LocalDate.of(2024, 10, 15), expensesList.get(0));
-            checkExpense(10,"Coffee", LocalDate.of(2024, 10, 14), expensesList.get(1));
+            checkExpense(15,"meal", LocalDate.of(2024, 10, 5), expensesList.get(0));
+            checkExpense(5,"coffee", LocalDate.of(2024, 10, 6), expensesList.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
