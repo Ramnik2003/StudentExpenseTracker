@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+//creates an ExpenseTrackerGUI that has different panels for inputs and outputs
 public class ExpenseTrackerGUI extends JPanel {
     private static final String JSON_STORE = "./data/expenses.json";
     private JsonReader jsonReader;
@@ -200,9 +201,16 @@ public class ExpenseTrackerGUI extends JPanel {
     }
 
 
+    //ActionListener Overall REFERENCES: Refernce for ActionListener Usage: 
+    //           https://stackoverflow.com/questions/44121663/using-actionlistener 
+    //           Reference for Arithemetic calculations:
+    //           https://stackoverflow.com/questions/62470646/how-to-do-arithmetic-calculation-in-action-listener
+    //
+    
     //Clicking "Add New Expense" button helps add new expense, ActionListener is used for this
     private class AddNewExpenseListener implements ActionListener {
         @Override
+        //REQUIRES: input enteries should be in correct format 
         //MODIFIES: this
         //EFFECTS: adds the typed information to the list expense list
         public void actionPerformed(ActionEvent e) {
@@ -221,6 +229,7 @@ public class ExpenseTrackerGUI extends JPanel {
     private class SaveDataListener implements ActionListener {
 
         @Override
+
         //MODIFIES: this
         //EFFECTS: saves the inputed expenses in expense.json
         public void actionPerformed(ActionEvent e) {
@@ -256,6 +265,7 @@ public class ExpenseTrackerGUI extends JPanel {
 
     }
 
+    //REFERENCE: Reference for new Dialogue Box: https://mkyong.com/swing/java-swing-joptionpane-showinputdialog-example/
     //https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-user-input-with-a-Swing-JOptionPane-example 
     //http://www.java2s.com/Tutorials/Java/java.time/LocalDate/index.htm#google_vignette
     //Clicking this Button allows the user to add all the expenses from a particular date
@@ -279,6 +289,7 @@ public class ExpenseTrackerGUI extends JPanel {
 
     private class AddMonthlyExpenseListener implements ActionListener {
 
+        
         //MODIFIES: this
         //EFFECTS: adds all the expenses in the particular month, for which the date is inputed 
         @Override

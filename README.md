@@ -19,6 +19,14 @@ I am also a university student and that too a commuter, so sometimes I find myse
 - As a user, I want to be able to save my expenses to file (if I so choose).
 - As a user, I want to be able to be able to load my expenses from file (if I so choose).
 
+# Instructions for End User
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by inputting data in the text fields and then clicking **Add Expense**.
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking **Daily Expense** button. It shows the output in the output text area.
+- You can save the state of my application by clicking **Save Expense Button**. 
+- You can reload the state of my application by clicking **Load Expense** button.
+- You can locate my visual compoenent at the left corner of the frame.
+
 # References:
 - JsonSerialization Demo
   https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
@@ -34,6 +42,10 @@ I am also a university student and that too a commuter, so sometimes I find myse
      https://docs.oracle.com/javase/8/docs/api/?java/time/LocalDate.html
 - .filter() and Local Date testing referenced from StackOverflow:
     https://stackoverflow.com/questions/69439833/how-to-filter-an-array-of-objects-by-month-and-year-java
+
+
+    
+
 
 
 
