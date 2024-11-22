@@ -100,7 +100,7 @@ public class ExpenseTrackerGUI extends JPanel {
 
     }
 
-    //EFFECTS: Creates Input Panel in that it creates different fields to take inputs from the user 
+    // EFFECTS: Creates Input Panel in that it creates different fields to take inputs from the user 
     private void takeInput() {
         inputPanel = new JPanel();
         inputPanel.setBackground(Color.PINK);
@@ -174,7 +174,8 @@ public class ExpenseTrackerGUI extends JPanel {
     //REFRENCE: https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html
     //                                  AND
     //          https://stackoverflow.com/questions/34145092/cant-add-jscrollpane-to-jtextarea 
-    //EFFECTS: creates output panel and in that creates an output text area that prints out the result after applying operations
+    //EFFECTS: creates output panel and in that creates an output text area that prints out the
+    //         result after applying operations
     private void giveOutput() {
         outputPanel = new JPanel();
        
@@ -211,7 +212,8 @@ public class ExpenseTrackerGUI extends JPanel {
             expense = new ElementExpense(newAmount, category, date);
             expensesOperations.addExpense(expense);
             resetTextField();
-            outputArea.append("Added expense: " + expense.getExpense() + " in category: " + expense.getCategory() + " on " + expense.getDate() + "\n");
+            outputArea.append("Added expense: " + expense.getExpense() + " in category: " 
+                               + expense.getCategory() + " on " + expense.getDate() + "\n");
         }
     }
 
@@ -230,7 +232,7 @@ public class ExpenseTrackerGUI extends JPanel {
             }
             jsonWriter.write(expensesOperations);
             jsonWriter.close();
-            outputArea.append("Data saved to" + JSON_STORE+"\n");
+            outputArea.append("Data saved to" + JSON_STORE + "\n");
 
         }
 
@@ -246,7 +248,7 @@ public class ExpenseTrackerGUI extends JPanel {
             jsonReader = new JsonReader(JSON_STORE);
             try {
                 expensesOperations = jsonReader.read();
-                outputArea.append("Data loaded from "+JSON_STORE+"\n");
+                outputArea.append("Data loaded from " + JSON_STORE + "\n");
             } catch (IOException e1) {
                 outputArea.append("Error");
             }
@@ -263,10 +265,10 @@ public class ExpenseTrackerGUI extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             String inputDate = JOptionPane.showInputDialog(frame,"Enter the date you want the total expenses from: ");
-            if(inputDate != null){
+            if (inputDate != null) {
                 LocalDate date = LocalDate.parse(inputDate);
                 double total = expensesOperations.totalDaily(date);
-                outputArea.setText("Total expenses for " + date + ": $" + total+"\n");
+                outputArea.setText("Total expenses for " + date + ": $" + total + "\n");
             } else {
                 outputArea.setText("Empty");
             }
@@ -281,12 +283,14 @@ public class ExpenseTrackerGUI extends JPanel {
         //EFFECTS: adds all the expenses in the particular month, for which the date is inputed 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String inputMonth = JOptionPane.showInputDialog(frame,"Enter the Month(Format: YYYY-MM-DD) you want the total expenses from: ");
-            if(inputMonth != null){
+            String inputMonth = JOptionPane.showInputDialog(frame,"Enter the Month(Format: YYYY-MM-DD)" 
+                                                            + " you want the total expenses from: ");
+            if (inputMonth != null) {
                 LocalDate date = LocalDate.parse(inputMonth);
                 double total = expensesOperations.totalMonthly(date);
-                outputArea.setText("Total expenses in " + date.getMonth() +  " " + date.getYear() + ": $" + total+"\n");
-            } else{
+                outputArea.setText("Total expenses in " + date.getMonth() 
+                                   +  " " + date.getYear() + ": $" + total + "\n");
+            } else {
                 outputArea.setText("Empty");
             }
 
@@ -300,14 +304,16 @@ public class ExpenseTrackerGUI extends JPanel {
         //EFFECTS: adds all the expenses for the inputed date, filtered out based on the inputed category
         @Override
         public void actionPerformed(ActionEvent e) {
-            String inputDate = JOptionPane.showInputDialog(frame,"Enter the Date(Format: YYYY-MM-DD) you want the total expenses from: ");
-            String inputCategory = JOptionPane.showInputDialog(frame,"Enter the category you want the total expenses from: ");
+            String inputDate = JOptionPane.showInputDialog(frame,"Enter the Date(Format: YYYY-MM-DD)"
+                                                            + " you want the total expenses from: ");
+            String inputCategory = JOptionPane.showInputDialog(frame,"Enter the category" 
+                                                                + " you want the total expenses from: ");
 
-            if(inputDate != null && inputCategory != null){
+            if (inputDate != null && inputCategory != null) {
                 LocalDate date = LocalDate.parse(inputDate);
                 double total = expensesOperations.totalDailyPerCategory(date, inputCategory);
-                outputArea.setText("Total expenses in " + date +" for " + inputCategory+ ": $" + total+"\n");
-            } else{
+                outputArea.setText("Total expenses in " + date + " for " + inputCategory + ": $" + total + "\n");
+            } else {
                 outputArea.setText("Empty");
             }
 
@@ -319,17 +325,21 @@ public class ExpenseTrackerGUI extends JPanel {
     private class AddMonthlyExpensePerCategoryListener implements ActionListener {
 
         //MODIFIES: this
-        //EFFECTS: adds all the expenses in the month for which the date is inputed and then filters out based on the category
+        //EFFECTS: adds all the expenses in the month for which the date is inputed 
+        //         and then filters out based on the category
         @Override
         public void actionPerformed(ActionEvent e) {
-            String inputMonth = JOptionPane.showInputDialog(frame,"Enter the Month(Format: YYYY-MM-DD) you want the total expenses from: ");
-            String inputCategory = JOptionPane.showInputDialog(frame,"Enter the category you want the total expenses from: ");
+            String inputMonth = JOptionPane.showInputDialog(frame,"Enter the Month(Format: YYYY-MM-DD)" 
+                                                             + " you want the total expenses from: ");
+            String inputCategory = JOptionPane.showInputDialog(frame,"Enter the category you" 
+                                                               + " want the total expenses from: ");
 
-            if(inputMonth != null){
+            if (inputMonth != null) {
                 LocalDate date = LocalDate.parse(inputMonth);
                 double total = expensesOperations.totalMonthlyPerCategory(date, inputCategory);
-                outputArea.setText("Total expenses in " + date.getMonth() +  " " + date.getYear() + "for "+inputCategory+ ": $" + total+"\n");
-            } else{
+                outputArea.setText("Total expenses in " + date.getMonth() +  " " 
+                                   + date.getYear() + "for " + inputCategory + ": $" + total + "\n");
+            } else {
                 outputArea.setText("Empty");
             }
 
