@@ -28,7 +28,6 @@ public class ExpenseTrackerApp {
     public ExpenseTrackerApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
         runTracker();
     }
 
@@ -73,9 +72,10 @@ public class ExpenseTrackerApp {
         System.out.println("\tq -> quit");
     }
 
-
+    
     //MODIFIES: this
     //EFFECTS: processes user commands
+    @SuppressWarnings("methodlength") 
     private void processCommand(String command) {
         switch (command) {
             case "a":
@@ -93,26 +93,18 @@ public class ExpenseTrackerApp {
             case "m":
                 viewTotalMonthlyPerCategory();
                 break;
-            default:
-                System.out.println("Selection not valid...");
-                break;
-
-        }
-        processCommandSaveAndLoad(command);
-    }
-
-    //MODIFIES: this
-    //EFFECTS: processes user commands for save and load 
-    private void processCommandSaveAndLoad(String command) {
-        switch (command) {
             case "s":
                 saveExpensesOperations();
                 break;
             case "l":
                 loadExpensesOperations();
                 break;
+            default:
+                System.out.println("Selection not valid...");
+                break;
         }
     }
+
 
 
 
@@ -205,6 +197,7 @@ public class ExpenseTrackerApp {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
+    
 }
 
 
