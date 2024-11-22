@@ -1,23 +1,13 @@
 package ui;
 
-import java.io.FileNotFoundException;
 import javax.swing.SwingUtilities;
 
+//REFERENCE: I refered to Youtube chanel "Java Code Junkie" to learn about GUI 
+// https://www.youtube.com/watch?v=1vVJPzVzaK8&list=PL3bGLnkkGnuV699lP_f9DvxyK5lMFpq6U 
+
 public class Main {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Welcome to Student Expense Tracker");
-        // new ExpenseTrackerApp();
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ExpenseTrackerGUI();
-            }
-        });
-        try {
-            new ExpenseTrackerApp();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new ExpenseTrackerGUI().setVisible(true));
         
     }
 
