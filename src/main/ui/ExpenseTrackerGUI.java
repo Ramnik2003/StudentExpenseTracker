@@ -2,9 +2,15 @@ package ui;
 
 import javax.swing.*;
 import model.ElementExpense;
+import model.EventLog;
 import model.ExpensesOperations;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import model.Event;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -67,9 +73,24 @@ public class ExpenseTrackerGUI extends JPanel {
         this.frame.setTitle("Student Expense Tracker");
         this.frame.setSize(800,600);
         this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        printEvent();
         this.frame.setVisible(true);
         this.frame.setLocationRelativeTo(null);
         this.frame.setLayout(new BorderLayout());
+    }
+
+    //REFERENCE: https://stackoverflow.com/questions/60516720/java-how-to-print-message-when-a-jframe-is-closed
+    //EFFECTS: prints all the logged events when the application quits
+    public void printEvent(){
+        this.frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                for (Event event : EventLog.getInstance()) {
+                System.out.println(event.getDescription());
+        }  
+            }
+        });
+        
     }
 
     //EFFECTS: makes the panel for the title of the application
@@ -233,15 +254,19 @@ public class ExpenseTrackerGUI extends JPanel {
         //MODIFIES: this
         //EFFECTS: saves the inputed expenses in expense.json
         public void actionPerformed(ActionEvent e) {
-            jsonWriter = new JsonWriter("expense.json");
+            // jsonWriter = new JsonWriter("expense.json");
             try {
                 jsonWriter.open();
+                jsonWriter.write(expensesOperations);
+                jsonWriter.close();
+                outputArea.append("Data saved to" + JSON_STORE + "\n");
+    
             } catch (FileNotFoundException e1) {
                 outputArea.append("Error");
+            } finally {
+                EventLog.getInstance().logEvent(new Event("Saves data"));
+
             }
-            jsonWriter.write(expensesOperations);
-            jsonWriter.close();
-            outputArea.append("Data saved to" + JSON_STORE + "\n");
 
         }
 
@@ -254,12 +279,15 @@ public class ExpenseTrackerGUI extends JPanel {
         //EFFECTS: loads the already saved expenses from "expenses.json"
         @Override
         public void actionPerformed(ActionEvent e) {
-            jsonReader = new JsonReader(JSON_STORE);
+            // jsonReader = JsonReader(JSON_STORE);
             try {
                 expensesOperations = jsonReader.read();
                 outputArea.append("Data loaded from " + JSON_STORE + "\n");
             } catch (IOException e1) {
                 outputArea.append("Error");
+            } finally {
+                EventLog.getInstance().logEvent(new Event("Data loaded from the saved list"));
+
             }
         }
 
@@ -356,7 +384,11 @@ public class ExpenseTrackerGUI extends JPanel {
 
         }
 
+    
+    
     }
+
+    
 
    
 
