@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -30,31 +31,34 @@ public class ExpensesOperations implements Writable {
 
 
     //MODIFIES: this
-    //EFFECTS: adds the element to the dataExpense list
+    //EFFECTS: adds the element to the dataExpense list and logs the add expense event in the console when application closed
     public void addExpense(ElementExpense expense) {
         expensesList.add(expense);
+        EventLog.getInstance().logEvent(new Event("New expense of amount " + expense.getExpense() + " of category " + expense.getCategory()+ "  on date "+ expense.getDate()+"added"));
     }
 
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses after adding all the expenses on a particular date
+    //         logs the adding event in the console 
     public double totalDaily(LocalDate date) {
         List<ElementExpense> filteredExpenses = expensesList.stream()
                 .filter(e -> e.getDate().equals(date))
                 .collect(Collectors.toList());
-        
+        EventLog.getInstance().logEvent(new Event("All Expenses on " + date + " added"));
         return additionFilteredElements(filteredExpenses);
 
     } 
 
     //REQUIRES: expence>0
     //MODIFIES: this
-    //EFFECTS: returns total expenses in a category after adding the expenses 
+    //EFFECTS: returns total expenses in a category after adding the expenses
+    //         logs the event in the console 
     public double totalDailyPerCategory(LocalDate date, String category) {
         List<ElementExpense> filteredExpenses = expensesList.stream()
                 .filter(e -> e.getDate().equals(date) && e.getCategory().equals(category))
                 .collect(Collectors.toList());
-       
+        EventLog.getInstance().logEvent(new Event("All expenses on "+ date+ " added based on category:" + category));
         return additionFilteredElements(filteredExpenses);
 
     }
@@ -62,12 +66,13 @@ public class ExpensesOperations implements Writable {
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses after adding all the expenses in that month
+    //         logs the event in the console 
     public double totalMonthly(LocalDate date) {
         List<ElementExpense> filteredExpenses = expensesList.stream()
                 .filter(e -> e.getDate().getYear() == date.getYear() 
                              && e.getDate().getMonthValue() == date.getMonthValue())
                 .collect(Collectors.toList());
-     
+        EventLog.getInstance().logEvent(new Event("All the expenses in the month of " + date.getMonth()+" added"));
         return additionFilteredElements(filteredExpenses);
 
     }
@@ -75,12 +80,14 @@ public class ExpensesOperations implements Writable {
     //REQUIRES: expence>0
     //MODIFIES: this
     //EFFECTS: returns total expenses in a category after adding the expenses in that month
+    //         logs the event in the console
     public double totalMonthlyPerCategory(LocalDate date, String category) {
         List<ElementExpense> filteredExpenses = expensesList.stream()
                 .filter(e -> e.getDate().getYear() == date.getYear()
                              && e.getDate().getMonthValue() == date.getMonthValue()
                              && e.getCategory().equals(category))
                 .collect(Collectors.toList());
+        EventLog.getInstance().logEvent(new Event("All the expenses in the month of" + date.getMonth()+ " added based on category: " +category));
         return additionFilteredElements(filteredExpenses);
         
     }
@@ -112,6 +119,15 @@ public class ExpensesOperations implements Writable {
         }
 
         return jsonArray;
+    }
+
+    public void saveExpensesLog() {
+        EventLog.getInstance().logEvent(new Event("Saves data "));
+    }
+
+    public void loadExpenseLog() {
+        EventLog.getInstance().logEvent(new Event("Data loaded from the saved list"));
+
     }
 
     

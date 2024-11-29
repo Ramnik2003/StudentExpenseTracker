@@ -80,6 +80,7 @@ public class ExpenseTrackerGUI extends JPanel {
     }
 
     //REFERENCE: https://stackoverflow.com/questions/60516720/java-how-to-print-message-when-a-jframe-is-closed
+    //           https://docs.oracle.com/javase/8/docs/api/java/awt/event/WindowAdapter.html
     //EFFECTS: prints all the logged events when the application quits
     public void printEvent(){
         this.frame.addWindowListener(new WindowAdapter() {
@@ -264,8 +265,7 @@ public class ExpenseTrackerGUI extends JPanel {
             } catch (FileNotFoundException e1) {
                 outputArea.append("Error");
             } finally {
-                EventLog.getInstance().logEvent(new Event("Saves data"));
-
+                expensesOperations.saveExpensesLog();
             }
 
         }
@@ -286,8 +286,7 @@ public class ExpenseTrackerGUI extends JPanel {
             } catch (IOException e1) {
                 outputArea.append("Error");
             } finally {
-                EventLog.getInstance().logEvent(new Event("Data loaded from the saved list"));
-
+                expensesOperations.loadExpenseLog();
             }
         }
 
