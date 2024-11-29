@@ -27,6 +27,30 @@ I am also a university student and that too a commuter, so sometimes I find myse
 - You can reload the state of my application by clicking **Load Expense** button.
 - You can locate my visual compoenent at the left corner of the frame.
 
+## Phase 4: Task 2:
+
+- New expense of amount 24.0 of category Meal  on date 2024-10-10added
+- New expense of amount 25.0 of category milk  on date 2024-10-10added
+- New expense of amount 35.0 of category fashion  on date 2024-11-11added
+- New expense of amount 4.0 of category Coffee  on date 2024-10-11added
+- New expense of amount 40.0 of category Movies  on date 2024-11-12added
+- Saves data
+- New expense of amount 12.0 of category fjinre  on date 2024-11-11added
+- Data loaded from the saved list
+- All Expenses on 2024-11-11 added
+- All the expenses in the month of OCTOBER added
+- All expenses on 2024-10-10 added based on category:coffee 
+- All the expenses in the month ofOCTOBER added based on category: milk
+- Saves data
+
+
+
+## Phase 4:  Task 3:
+ # If I have more time:
+ If I have more time I'd like to add few changes with respect to refactoring. Currently my "ExpenseOperations" class is applying diffferent methods on the list. It takes inout from "ElementExpense" class and adds it to the list. Then according to the methods it filters out the elements from the list. I'd like to divide it's functionality into different classes rather than methods. 
+ Also, I'd like to divide the functinality of ExpenseTrackerGUI class into separate classes as well. I tried to divide it into panels but I think reading through the code will be much easier if I separate them into classes. 
+ Moreover, as we learned in D4, I can also refactor my model package into classes like composite, component and leaf. In my case leaf could be a single expense that implements teh component, say ComponentExpense. And composite could be ExpenseOperations that also implements ComponentExpense interface.
+
 # References:
 - JsonSerialization Demo
   https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo
@@ -42,6 +66,10 @@ I am also a university student and that too a commuter, so sometimes I find myse
      https://docs.oracle.com/javase/8/docs/api/?java/time/LocalDate.html
 - .filter() and Local Date testing referenced from StackOverflow:
     https://stackoverflow.com/questions/69439833/how-to-filter-an-array-of-objects-by-month-and-year-java
+
+- Exit Listener :
+   https://stackoverflow.com/questions/60516720/java-how-to-print-message-when-a-jframe-is-closed
+
 
 
     
